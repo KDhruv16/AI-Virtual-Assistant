@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useContext, useState } from 'react';
 import { IoEye } from "react-icons/io5";
 import { IoEyeOff } from "react-icons/io5";
-import UserContext, { userDataContext } from '../context/userContext';
+import UserContext, { userDataContext } from '../context/UserContext';
 import axios from 'axios';
 
 
