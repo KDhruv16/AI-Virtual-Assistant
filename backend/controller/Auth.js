@@ -42,8 +42,8 @@ export const signUp = async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
-            secure: false,   // ⭐ LOCALHOST ke liye ALWAYS false
-            sameSite: "lax",
+            secure: true,   // ⭐ LOCALHOST ke liye ALWAYS false
+            sameSite: "None",
             path: "/",
             maxAge: 7 * 24 * 60 * 60 * 1000
         });
@@ -76,13 +76,36 @@ export const login = async (req, res) => {
             return res.status(400).json({ message: "Password does not match" });
         }
         
+        const payload = {
+            userId: user._id,
+            username: user.name
+        };
+
+        // 2. Define your secret key (ideally from environment variables in production)
+        const secretKey = process.env.JWT_SECRET
+
+        // 3. Define options, such as expiration time
+        const options = {
+            expiresIn: "10d" // Token expires in 10 Days
+        };
+        const token = jwt.sign(payload, secretKey, options);
+
+        user.password = undefined;
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: true,  
+            sameSite: "None",
+            path: "/",
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        });
 
 
         return res.status(200).json({
             success: true,
             message: "Login successful",
             user,
-            // token,
+            token,
         })
 
     } catch (err) {
