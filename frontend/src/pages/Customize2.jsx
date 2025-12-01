@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import { MdKeyboardBackspace } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
-import { userDataContext } from '../context/userContext';
+import { userDataContext } from '../context/UserContext';
 function Customize2() {
     const { userData, backendImage, selectedImage, serverUrl, setUserData } = useContext(userDataContext)
     const [assistantName, setAssistantName] = useState(userData?.AssistantName || "")
