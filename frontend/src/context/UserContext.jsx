@@ -6,7 +6,7 @@ import axios from "axios";
 
 
 function UserContext({ children }) {
-  const serverUrl = "http://localhost:8000";
+  const serverUrl = "https://ai-virtual-assistant-backend-nwv3.onrender.com";
   const [frontendImage, setFrontendImage] = useState(null);
   const [backendImage, setBackendImage] = useState(null);
   const [selectedImage, setSelectedImage] = useState(false);
